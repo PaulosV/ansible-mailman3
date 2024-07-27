@@ -60,8 +60,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     #'django_mailman3.lib.auth.fedora',
-{% for provider in __mailman3_django_config_merged.socialaccount_providers | default({}) | sort %}
-    'allauth.socialaccount.providers.{{ provider }}',
+{% for installed_app in __mailman3_django_config_merged.installed_apps | default({}) | sort %}
+    '{{ installed_app }}',
 {% endfor %}
 )
 

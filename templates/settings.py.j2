@@ -142,10 +142,10 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 {% endif %}
-{% if __mailman3_django_config_merged.socialaccount_providers is defined %}
+{% if __mailman3_django_config_merged.installed_apps is defined %}
 
-{% for provider in __mailman3_django_config_merged.socialaccount_providers | sort %}
-INSTALLED_APPS.append('allauth.socialaccount.providers.{{ provider }}')
+{% for installed_app in __mailman3_django_config_merged.installed_apps | sort %}
+INSTALLED_APPS.append('{{ installed_app }}')
 {% endfor %}
 {% endif %}
 {% if __mailman3_django_config_merged.use_x_forwarded_host is defined %}
@@ -181,7 +181,7 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = "{{ __mailman3_django_config_merged.default_http
 SOCIALACCOUNT_PROVIDERS = {
 {% for key in __mailman3_django_config_merged.socialaccount_providers | sort %}
 {# This just dumps Ansible's Python representation of the value, which isn't ideal, but it probably works #}
-    '{{ key }}': {{ __mailman3_django_config_merged.socialaccount_providers[key] }}
+    '{{ key }}': {{ __mailman3_django_config_merged.socialaccount_providers[key] }},
 {% endfor %}
 }
 {% endif %}
