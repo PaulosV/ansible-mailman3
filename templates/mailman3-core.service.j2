@@ -5,7 +5,7 @@ Documentation=https://mailman.readthedocs.io/
 ConditionPathExists={{ mailman3_core_etc_dir }}/mailman.cfg
 
 [Service]
-ExecStart={{ mailman3_install_dir }}/bin/mailman -C {{ mailman3_core_etc_dir }}/mailman.cfg start
+ExecStart={{ mailman3_install_dir }}/bin/mailman -C {{ mailman3_core_etc_dir }}/mailman.cfg start --force
 ExecReload={{ mailman3_install_dir }}/bin/mailman -C {{ mailman3_core_etc_dir }}/mailman.cfg restart
 ExecStop={{ mailman3_install_dir }}/bin/mailman -C {{ mailman3_core_etc_dir }}/mailman.cfg stop
 Type=forking
